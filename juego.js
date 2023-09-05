@@ -14,7 +14,7 @@ function obtenerParametroURL(nombre) {
 // Obtener el valor del parámetro 'opcion'
 const opcion = obtenerParametroURL("catg");
 
-fetch("/palabras/" + opcion + ".json")
+fetch("palabras/" + opcion + ".json")
   .then((response) => {
     if (!response.ok) {
       throw new Error("La solicitud del diccionario no fue exitosa");
