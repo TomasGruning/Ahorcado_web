@@ -15,7 +15,7 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 4vh;
+    gap: 4%;
 }
 
 main div{
@@ -31,7 +31,7 @@ main div{
     height: 6vh;
     width: 70vh;
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
+    border-radius: 2.7vh;
     display: flex;
     align-items: center;
     padding-bottom: 2.5vh;    
@@ -55,11 +55,11 @@ main div{
 }
 
 #palabra_a_adivinar {
-    font-size: 1.6vh;
+    font-size: 1.8vh;
 }
 
 #palabra_a_adivinar span{
-    height: 1.1em;
+    height: 1.2em;
     width: 1.2em;
     font-size: 2em;
     border-bottom: 0.6vh solid black;

@@ -119,7 +119,9 @@ fetch("palabras/" + opcion + ".json")
 
     function habilitarVolverJugar() {
       document.removeEventListener("keydown", teclaPresionada);
-      document.addEventListener("keydown", iniciar);
+      document.addEventListener("keydown", (event) => {
+        if (event.key == 'Enter' || event.key == ' ') { iniciar() }
+      });
       reiniciar.disabled = false;
     }
   })
