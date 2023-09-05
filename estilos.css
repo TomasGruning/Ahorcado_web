@@ -1,5 +1,5 @@
 body {
-    margin: auto;
+    margin : auto;
     background: radial-gradient(#006d52, #033b2b);
     background-size: cover;
     font-family:Arial, Helvetica, sans-serif;
@@ -7,23 +7,24 @@ body {
 }
 
 main {
-    height: 88vh;
-    margin-left: 3.6%;
+    height: 68vh;
+    padding-top: 8vh;
+    padding-right: 1%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 5%;
+    gap: 4vh;
 }
 
 main div{
-    width: 55%;
+    width: auto;
     margin-bottom: 4%;    
 }
 
 #imagen {
-    width: 25%;
+    width: 45vh;
 }
 
 #errores {
@@ -33,7 +34,7 @@ main div{
     border-radius: 15px;
     display: flex;
     align-items: center;
-    padding-bottom: 2vh;    
+    padding-bottom: 2.5vh;    
 }
 
 #errores span{
@@ -47,38 +48,38 @@ main div{
 
 #texto {
     width: 100%;
-    padding-top: 5%;
+    padding-top: 1vh;
     padding-left: 1vh;
     display: flex;
-    gap: 5%;
+    gap: 2%;
 }
 
 #palabra_a_adivinar {
-    font-size: 93%;
+    font-size: 1.6vh;
 }
 
 #palabra_a_adivinar span{
-    height: 1.2em;
-    width: 1em;
+    height: 1.1em;
+    width: 1.2em;
     font-size: 2em;
-    border-bottom: 4px solid black;
-    padding-top: 80px;
+    border-bottom: 0.6vh solid black;
+    padding-top: 17vh;
     vertical-align: bottom;
     text-align: center;
-    margin-right: 6px;
+    margin-right: 1.2vh;
     display: inline-block;
 }
 
 #jugar{
     background: rgba(255, 255, 255, 0.1);
-    margin-top: 95px;
+    margin-top: 18vh;
     border: 1px solid rgba(25, 25, 25, 0.1);
-    border-radius: 15px;
+    border-radius: 3.3vh;
     box-shadow: 0 4px 30px rgba(35, 35, 35, 0.1);
     color: #232323;
-    flex-basis: 180px;
-    font-size: 18px;
-    height: 45px;
+    flex-basis: 19vh;
+    font-size: 2.8vh;
+    height: 2.7em;
 }
 
 #jugar:hover {
