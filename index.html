@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inicio</title>
+        <style>
+            body {
+                background: radial-gradient(#006d52, #033b2b);
+                background-size: cover;
+                min-height: 100vh;
+                margin: auto;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-content: center;
+                flex-wrap: wrap;
+                gap: 8vh 6%;
+            }
+            
+            button {
+                background-size: cover;
+                background-position: center;
+                color: whitesmoke;
+                margin: 20px;
+                border: none;
+                border-radius: 90px;
+                text-align: center;
+                font-size: 6.9vh;
+                font-family: Verdana, Arial, sans-serif;
+                width: 58vh;
+                height: 19vh;
+                transition: transform 0.46s ease;
+            }
+            button:hover {
+                transform: scale(1.10);
+            }
+
+            .capitales {
+                background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(/assets/capitales.jpg);
+                background-size: 60vh;
+            }
+            
+            .animales {
+                background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(/assets/animales.jpeg);
+                background-size: 57vh;
+            }
+
+            .frutas {
+                background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(/assets/frutas.jpg);
+                background-size: 51vh;
+            }
+
+            .trabajos {
+                background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(
+                    https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsfk7XXuKphFWtnmEzCVlR9PFYJ-8e5lbsUw&usqp=CAU);
+                background-size: 60vh;
+            }
+        </style>
+    </head>
+
+    <body>
+        <button class="capitales" onClick="window.location.href = 'juego.html?catg=capitales'">capitales</button>
+        <button class="animales" onClick="window.location.href = 'juego.html?catg=animales'">animales</button>
+        <button class="frutas" onClick="window.location.href = 'juego.html?catg=frutas'">frutas</button>
+        <button class="trabajos" onClick="window.location.href = 'juego.html?catg=trabajos'">trabajos</button>
+    </body>
+    
+</html>
