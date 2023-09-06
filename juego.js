@@ -119,7 +119,7 @@ fetch("diccionario.json")
         ) {
           acerto = true;
           aciertos_cont++;
-          spans_palabra[x].innerHTML = tecla.toUpperCase();
+          spans_palabra[x].innerHTML = palabra_elegida[x].toUpperCase();
         }
       }
 
