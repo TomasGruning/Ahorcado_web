@@ -1,9 +1,10 @@
-let palabra_elegida;
 let letras_usadas = [];
 let errores_cont = 0,
   aciertos_cont = 0;
 let acerto = false;
 let palabras = [];
+let random = false;
+const opcionesPosibles = ["frutas", "capitales", "animales", "trabajos"];
 
 // Función para obtener el parámetro de la URL
 function obtenerParametroURL(nombre) {
@@ -11,10 +12,7 @@ function obtenerParametroURL(nombre) {
   return urlParams.get(nombre);
 }
 
-// Obtener el valor del parámetro 'opcion'
-const opcion = obtenerParametroURL("catg");
-
-fetch("palabras/" + opcion + ".json")
+fetch("diccionario.json")
   .then((response) => {
     if (!response.ok) {
       throw new Error("La solicitud del diccionario no fue exitosa");
@@ -22,8 +20,28 @@ fetch("palabras/" + opcion + ".json")
     return response.json();
   })
   .then((data) => {
-    // Ahora 'data' contiene el objeto JavaScript parseado desde el JSON
-    palabras = data;
+    // Obtener el valor del parámetro
+    const parametroURL = obtenerParametroURL("catg");
+
+    // Verificar si el valor existe y está incluido en opcionesPosibles
+    if (
+      parametroURL &&
+      opcionesPosibles.includes(parametroURL) &&
+      parametroURL != "rand"
+    ) {
+      // Usar el valor del parámetro URL como 'opcion'
+      palabras = data[parametroURL];
+    } else {
+      random = true;
+
+      if (
+        parametroURL &&
+        !opcionesPosibles.includes(parametroURL) &&
+        parametroURL != "rand"
+      ) {
+        console.warn("La categoria no existe, se selecciono una aleatoria");
+      }
+    }
 
     const atril = document.getElementById("imagen");
 
@@ -35,15 +53,26 @@ fetch("palabras/" + opcion + ".json")
     reiniciar.addEventListener("click", iniciar);
 
     function iniciar() {
+      if (random) {
+        // Selecciona una categoria aleatoria
+        palabras =
+          data[
+            opcionesPosibles[
+              Math.floor(Math.random() * opcionesPosibles.length)
+            ]
+          ];
+      }
+
+      let palabra_elegida;
       //evita que se pueda generar otra palabra hasta que termine el juego
       reiniciar.disabled = true;
       document.removeEventListener("keydown", iniciar);
 
       //reinicia las variables
       atril.src = "assets/atril/img0.png";
-      letras_usadas = [];
       errores_cont = 0;
       aciertos_cont = 0;
+      letras_usadas = [];
 
       const parrafo = document.getElementById("palabra_a_adivinar");
       parrafo.innerHTML = "";
@@ -63,11 +92,14 @@ fetch("palabras/" + opcion + ".json")
         parrafo.appendChild(document.createElement("span"));
       }
 
-      document.addEventListener("keydown", teclaPresionada);
+      document.addEventListener("keydown", function (event) {
+        teclaPresionada(event, palabra_elegida);
+      });
     }
 
-    function teclaPresionada(event) {
+    function teclaPresionada(event, palabra_elegida) {
       acerto = false;
+      console.log(errores_cont, aciertos_cont);
       const spans_palabra = document.querySelectorAll(
         "#palabra_a_adivinar span"
       );
@@ -120,7 +152,9 @@ fetch("palabras/" + opcion + ".json")
     function habilitarVolverJugar() {
       document.removeEventListener("keydown", teclaPresionada);
       document.addEventListener("keydown", (event) => {
-        if (event.key == 'Enter' || event.key == ' ') { iniciar() }
+        if (event.key == "Enter" || event.key == " ") {
+          iniciar();
+        }
       });
       reiniciar.disabled = false;
     }
