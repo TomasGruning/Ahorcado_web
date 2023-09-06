@@ -9,7 +9,7 @@ body {
 main {
     height: 68vh;
     padding-top: 8vh;
-    padding-right: 5%;
+    padding-right: 2%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -19,7 +19,7 @@ main {
 }
 
 main div{
-    width: auto;
+    display: inline-block;
     margin-bottom: 4%;    
 }
 
@@ -47,15 +47,15 @@ main div{
 }
 
 #texto {
-    width: 117%;
+    width: 100%;
     padding-top: 1vh;
     padding-left: 1vh;
-    display: flex;
-    gap: 5%;
+    display: inline-block;
 }
 
 #palabra_a_adivinar {
     font-size: 1.8vh;
+    display: inline-block;
 }
 
 #palabra_a_adivinar span{
@@ -72,12 +72,12 @@ main div{
 
 #jugar{
     background: rgba(255, 255, 255, 0.1);
+    display: inline-block;
     margin-top: 18vh;
     border: 1px solid rgba(25, 25, 25, 0.1);
     border-radius: 3.3vh;
     box-shadow: 0 4px 30px rgba(35, 35, 35, 0.1);
     color: #232323;
-    flex-basis: 29vh;
     font-size: 2.8vh;
     height: 2.7em;
 }
