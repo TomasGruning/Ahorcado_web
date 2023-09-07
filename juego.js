@@ -1,4 +1,11 @@
-const opcionesPosibles = ["frutas", "capitales", "animales", "trabajos", "peliculas", "superheroes"];
+const opcionesPosibles = [
+  "frutas",
+  "capitales",
+  "animales",
+  "trabajos",
+  "peliculas",
+  "superheroes",
+];
 
 // Función para obtener el parámetro de la URL
 function obtenerParametroURL(nombre) {
@@ -17,8 +24,7 @@ fetch("diccionario.json")
     let palabras = [];
     let letras_usadas = [];
     let palabra_elegida, largo;
-    let errores_cont,
-      aciertos_cont;
+    let errores_cont, aciertos_cont;
     let acerto = false,
       random = false;
 
@@ -97,16 +103,18 @@ fetch("diccionario.json")
       }
 
       //elije una palabra aleatoria
-      palabra_elegida = palabras[Math.floor(Math.random() * palabras.length)];
+      //palabra_elegida = palabras[Math.floor(Math.random() * palabras.length)];
+
+      let pruebas = ["abcd", "harry potter y la piedra filosofal"];
+      palabra_elegida = pruebas[Math.floor(Math.random() * pruebas.length)];
 
       //crea lo guiones para cada letra de la palabra
       for (let i = 0; i < palabra_elegida.length; i++) {
         let guion = parrafo.appendChild(document.createElement("span"));
-        if(palabra_elegida[i] == ' '){
+        if (palabra_elegida[i] == " ") {
           guion.style.width = "0";
           guion.style.marginRight = "3vh";
-        }
-        else{
+        } else {
           largo++;
         }
       }
@@ -126,16 +134,19 @@ fetch("diccionario.json")
 
       for (let x = 0; x < palabra_elegida.length; x++) {
         if (
-          tecla == palabra_elegida[x].toLowerCase() ||
-          (tecla == "a" && palabra_elegida[x].toLowerCase() == "á") ||
-          (tecla == "e" && palabra_elegida[x].toLowerCase() == "é") ||
-          (tecla == "i" && palabra_elegida[x].toLowerCase() == "í") ||
-          (tecla == "o" && palabra_elegida[x].toLowerCase() == "ó") ||
-          (tecla == "u" && palabra_elegida[x].toLowerCase() == "ú")
+          (tecla == palabra_elegida[x].toLowerCase() ||
+            (tecla == "a" && palabra_elegida[x].toLowerCase() == "á") ||
+            (tecla == "e" && palabra_elegida[x].toLowerCase() == "é") ||
+            (tecla == "i" && palabra_elegida[x].toLowerCase() == "í") ||
+            (tecla == "o" && palabra_elegida[x].toLowerCase() == "ó") ||
+            (tecla == "u" && palabra_elegida[x].toLowerCase() == "ú")) &&
+          letras_usadas.indexOf(tecla) == -1
         ) {
-          acerto = true;
-          aciertos_cont++;
           spans_palabra[x].innerHTML = palabra_elegida[x].toUpperCase();
+          aciertos_cont++;
+          letras_usadas.push(tecla);
+
+          acerto = true;
         }
       }
 
@@ -146,14 +157,11 @@ fetch("diccionario.json")
         letras_usadas.indexOf(tecla) == -1
       ) {
         spans_errores[errores_cont].innerHTML = tecla.toUpperCase();
-
-        letras_usadas.push(tecla);
+        atril.src = "assets/atril/img" + errores_cont + ".png";
         errores_cont++;
 
-        atril.src = "assets/atril/img" + errores_cont + ".png";
+        letras_usadas.push(tecla);
       }
-
-      console.log(aciertos_cont, largo);
 
       if (errores_cont == 7) {
         //muestra cual era la palabra
@@ -161,7 +169,7 @@ fetch("diccionario.json")
           spans_palabra[x].innerHTML = palabra_elegida[x].toUpperCase();
         }
         habilitarVolverJugar();
-      } else if (aciertos_cont == largo) {
+      } else if (aciertos_cont >= largo) {
         atril.src = "assets/atril/win.png";
         habilitarVolverJugar();
       }
