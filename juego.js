@@ -103,10 +103,7 @@ fetch("diccionario.json")
       }
 
       //elije una palabra aleatoria
-      //palabra_elegida = palabras[Math.floor(Math.random() * palabras.length)];
-
-      let pruebas = ["abcd", "harry potter y la piedra filosofal"];
-      palabra_elegida = pruebas[Math.floor(Math.random() * pruebas.length)];
+      palabra_elegida = palabras[Math.floor(Math.random() * palabras.length)];
 
       //crea lo guiones para cada letra de la palabra
       for (let i = 0; i < palabra_elegida.length; i++) {
@@ -144,7 +141,6 @@ fetch("diccionario.json")
         ) {
           spans_palabra[x].innerHTML = palabra_elegida[x].toUpperCase();
           aciertos_cont++;
-          letras_usadas.push(tecla);
 
           acerto = true;
         }
@@ -152,16 +148,19 @@ fetch("diccionario.json")
 
       //si la letra no esta en la palabra
       if (
-        acerto == false &&
+        !acerto &&
         tecla.match(/^[a-z]$/) &&
         letras_usadas.indexOf(tecla) == -1
       ) {
         spans_errores[errores_cont].innerHTML = tecla.toUpperCase();
-        atril.src = "assets/atril/img" + errores_cont + ".png";
         errores_cont++;
-
-        letras_usadas.push(tecla);
+        atril.src = "assets/atril/img" + errores_cont + ".png";
       }
+
+      //agrega la tecla a las teclas usadas
+      letras_usadas.push(tecla);
+
+      console.log(aciertos_cont, errores_cont);
 
       if (errores_cont == 7) {
         //muestra cual era la palabra
