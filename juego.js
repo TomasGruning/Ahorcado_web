@@ -1,10 +1,4 @@
-let letras_usadas = [];
-let errores_cont = 0,
-  aciertos_cont = 0;
-let acerto = false;
-let palabras = [];
-let random = false;
-const opcionesPosibles = ["frutas", "capitales", "animales", "trabajos"];
+const opcionesPosibles = ["frutas", "capitales", "animales", "trabajos", "peliculas", "superheroes"];
 
 // Función para obtener el parámetro de la URL
 function obtenerParametroURL(nombre) {
@@ -20,6 +14,24 @@ fetch("diccionario.json")
     return response.json();
   })
   .then((data) => {
+    let palabras = [];
+    let letras_usadas = [];
+    let palabra_elegida, largo;
+    let errores_cont,
+      aciertos_cont;
+    let acerto = false,
+      random = false;
+
+    const generarPalabraNueva = (event) => {
+      if (event.key == "Enter" || event.key == " ") {
+        iniciar();
+      }
+    };
+    //detecta si se presiono una letra en el teclado
+    const presionoTecla = (event, palabra) => {
+      analizarTeclaPresionada(event, palabra_elegida);
+    };
+
     // Obtener el valor del parámetro
     const parametroURL = obtenerParametroURL("catg");
 
@@ -63,13 +75,13 @@ fetch("diccionario.json")
           ];
       }
 
-      let palabra_elegida;
       //evita que se pueda generar otra palabra hasta que termine el juego
       reiniciar.disabled = true;
-      document.removeEventListener("keydown", iniciar);
+      document.removeEventListener("keydown", generarPalabraNueva);
 
       //reinicia las variables
       atril.src = "assets/atril/img0.png";
+      largo = 0;
       errores_cont = 0;
       aciertos_cont = 0;
       letras_usadas = [];
@@ -88,18 +100,22 @@ fetch("diccionario.json")
       palabra_elegida = palabras[Math.floor(Math.random() * palabras.length)];
 
       //crea lo guiones para cada letra de la palabra
-      for (let x = 0; x < palabra_elegida.length; x++) {
-        parrafo.appendChild(document.createElement("span"));
+      for (let i = 0; i < palabra_elegida.length; i++) {
+        let guion = parrafo.appendChild(document.createElement("span"));
+        if(palabra_elegida[i] == ' '){
+          guion.style.width = "0";
+          guion.style.marginRight = "3vh";
+        }
+        else{
+          largo++;
+        }
       }
 
-      document.addEventListener("keydown", function (event) {
-        teclaPresionada(event, palabra_elegida);
-      });
+      document.addEventListener("keydown", presionoTecla);
     }
 
-    function teclaPresionada(event, palabra_elegida) {
+    function analizarTeclaPresionada(event, palabra_elegida) {
       acerto = false;
-      console.log(errores_cont, aciertos_cont);
       const spans_palabra = document.querySelectorAll(
         "#palabra_a_adivinar span"
       );
@@ -137,25 +153,23 @@ fetch("diccionario.json")
         atril.src = "assets/atril/img" + errores_cont + ".png";
       }
 
+      console.log(aciertos_cont, largo);
+
       if (errores_cont == 7) {
         //muestra cual era la palabra
         for (let x = 0; x < palabra_elegida.length; x++) {
           spans_palabra[x].innerHTML = palabra_elegida[x].toUpperCase();
         }
         habilitarVolverJugar();
-      } else if (aciertos_cont == palabra_elegida.length) {
+      } else if (aciertos_cont == largo) {
         atril.src = "assets/atril/win.png";
         habilitarVolverJugar();
       }
     }
 
     function habilitarVolverJugar() {
-      document.removeEventListener("keydown", teclaPresionada);
-      document.addEventListener("keydown", (event) => {
-        if (event.key == "Enter" || event.key == " ") {
-          iniciar();
-        }
-      });
+      document.removeEventListener("keydown", presionoTecla);
+      document.addEventListener("keydown", generarPalabraNueva);
       reiniciar.disabled = false;
     }
   })

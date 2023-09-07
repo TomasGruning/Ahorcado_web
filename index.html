@@ -1,82 +1,134 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="Ahorcado TFG" content="width=device-width, initial-scale=1.0">
-        <title>Inicio</title>
-        <style>
-            body {
-                background: radial-gradient(#006d52, #033b2b);
-                background-size: cover;
-                min-height: 100vh;
-                margin: auto;
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-content: center;
-                flex-wrap: wrap;
-                gap: 6vh 6vh;
-            }
-            
-            button {
-                background-size: cover;
-                background-position: center;
-                color: whitesmoke;
-                margin: 20px;
-                border: none;
-                border-radius: 90vh;
-                text-align: center;
-                text-transform: uppercase;
-                font-size: 6vh;
-                text-shadow: 7px 4px 6px black;
-                font-family: Verdana, Arial, sans-serif;
-                width: 58vh;
-                height: 19vh;
-                transition: transform 0.46s ease;
-            }
-            button:hover {
-                transform: scale(1.10);
-            }
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="Ahorcado TFG" content="width=device-width, initial-scale=1.0" />
+    <title>Inicio</title>
+    <style>
+      body {
+        background: radial-gradient(#006d52, #033b2b);
+        background-size: cover;
+        min-height: 100vh;
+        margin: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-content: center;
+        flex-wrap: wrap;
+        gap: 6vh 6vh;
+      }
 
-            .random {
-                background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(
-                    https://media.istockphoto.com/id/1407739499/es/v%C3%ADdeo/signos-de-interrogaci%C3%B3n-ilustraci%C3%B3n-animada.jpg?s=640x640&k=20&c=SFs1QgFP-oHCl6ulkoJjkYlbdf48zm6D0QHkJ6PmYNg=);
-                background-size: 50vh;
-                background-position-y: center;
-            }
-            
-            .capitales {
-                background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(
-                    https://as1.ftcdn.net/v2/jpg/01/16/60/50/1000_F_116605007_x7qTBZc8XeJnOctHefWPl0IqwIppzxbm.jpg);
-                background-size: 60vh;
-            }
-            
-            .animales {
-                background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(assets/animales.jpeg);
-                background-size: 57vh;
-            }
+      button {
+        background-size: cover;
+        background-position: center;
+        color: whitesmoke;
+        margin: 1% 0.8%;
+        border: none;
+        border-radius: 90vh;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 5.5vh;
+        text-shadow: 14px 10px 6px black;
+        font-family: Verdana, Arial, sans-serif;
+        cursor: pointer;
+        width: 50vh;
+        height: 19vh;
+        transition: all 0.45s ease-in-out;
+      }
+      button:hover {
+        transform: scale(1.1);
+      }
 
-            .frutas {
-                background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(
-                    https://www.sabervivirtv.com/medio/2023/07/10/cantidad-de-azucar-frutas_4d26f8f2_995518546_230710112307_1280x720.jpg);
-                background-size: 59vh;
-            }
+      .random {
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          url(https://media.istockphoto.com/id/1407739499/es/v%C3%ADdeo/signos-de-interrogaci%C3%B3n-ilustraci%C3%B3n-animada.jpg?s=640x640&k=20&c=SFs1QgFP-oHCl6ulkoJjkYlbdf48zm6D0QHkJ6PmYNg=);
+        background-size: 54vh;
+        background-position-y: center;
+      }
 
-            .trabajos {
-                background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(
-                    https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsfk7XXuKphFWtnmEzCVlR9PFYJ-8e5lbsUw&usqp=CAU);
-                background-size: 60vh;
-            }
-        </style>
-    </head>
+      .capitales {
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          url(https://as1.ftcdn.net/v2/jpg/01/16/60/50/1000_F_116605007_x7qTBZc8XeJnOctHefWPl0IqwIppzxbm.jpg);
+        background-size: 58vh;
+        background-position: center;
+      }
 
-    <body>
-        <button class="capitales" onClick="window.location.href = 'juego.html?catg=capitales'">capitales</button>
-        <button class="animales" onClick="window.location.href = 'juego.html?catg=animales'">animales</button>
-        <button class="frutas" onClick="window.location.href = 'juego.html?catg=frutas'">frutas</button>
-        <button class="trabajos" onClick="window.location.href = 'juego.html?catg=trabajos'">trabajos</button>
-        <button class="random" onClick="window.location.href = 'juego.html?catg=rand'">random</button>
-    </body>
-    
+      .animales {
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          url(assets/animales.jpeg);
+        background-size: 63vh;
+      }
+
+      .frutas {
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          url(https://www.sabervivirtv.com/medio/2023/07/10/cantidad-de-azucar-frutas_4d26f8f2_995518546_230710112307_1280x720.jpg);
+        background-size: 59vh;
+      }
+
+      .trabajos {
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsfk7XXuKphFWtnmEzCVlR9PFYJ-8e5lbsUw&usqp=CAU);
+        background-size: 52vh;
+      }
+
+      .peliculas {
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          url(https://media.istockphoto.com/id/1047762070/es/foto/peque%C3%B1o-cine.jpg?s=612x612&w=0&k=20&c=AFiUXM5wdWx1LTB9u5fn5rgBOk5jIt_RuttPxS5oHjQ=);
+        background-size: 50vh;
+      }
+
+      .superheroes {
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          url(https://img.freepik.com/vector-gratis/fondo-pantalla-comics-brillantes-diseno-plano_23-2148799406.jpg);
+        background-size: 58vh;
+        background-position: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button
+      class="capitales"
+      onClick="window.location.href = 'juego.html?catg=capitales'"
+    >
+      capitales
+    </button>
+    <button
+      class="animales"
+      onClick="window.location.href = 'juego.html?catg=animales'"
+    >
+      animales
+    </button>
+    <button
+      class="frutas"
+      onClick="window.location.href = 'juego.html?catg=frutas'"
+    >
+      frutas
+    </button>
+    <button
+      class="trabajos"
+      onClick="window.location.href = 'juego.html?catg=trabajos'"
+    >
+      trabajos
+    </button>
+    <button
+      class="peliculas"
+      onClick="window.location.href = 'juego.html?catg=peliculas'"
+    >
+      peliculas
+    </button>
+    <button
+      class="superheroes"
+      onClick="window.location.href = 'juego.html?catg=superheroes'"
+    >
+      superheroes
+    </button>
+    <button
+      class="random"
+      onClick="window.location.href = 'juego.html?catg=rand'"
+    >
+      random
+    </button>
+  </body>
 </html>
