@@ -23,7 +23,7 @@ fetch("diccionario.json")
   .then((data) => {
     let palabras = [];
     let letras_usadas = [];
-    let palabra_elegida, largo;
+    let palabra_elegida;
     let errores_cont, aciertos_cont;
     let acerto = false,
       random = false;
@@ -34,8 +34,8 @@ fetch("diccionario.json")
       }
     };
     //detecta si se presiono una letra en el teclado
-    const presionoTecla = (event, palabra) => {
-      analizarTeclaPresionada(event, palabra_elegida);
+    const presionoTecla = (event) => {
+      analizarTeclaPresionada(event, palabra_elegida.replace(/ /g, ""));
     };
 
     // Obtener el valor del parámetro
@@ -87,7 +87,6 @@ fetch("diccionario.json")
 
       //reinicia las variables
       atril.src = "assets/atril/img0.png";
-      largo = 0;
       errores_cont = 0;
       aciertos_cont = 0;
       letras_usadas = [];
@@ -105,14 +104,19 @@ fetch("diccionario.json")
       //elije una palabra aleatoria
       palabra_elegida = palabras[Math.floor(Math.random() * palabras.length)];
 
-      //crea lo guiones para cada letra de la palabra
-      for (let i = 0; i < palabra_elegida.length; i++) {
-        let guion = parrafo.appendChild(document.createElement("span"));
-        if (palabra_elegida[i] == " ") {
-          guion.style.width = "0";
-          guion.style.marginRight = "3vh";
-        } else {
-          largo++;
+      // Divide la palabra en palabras separadas por espacios
+      const palabrasSeparadas = palabra_elegida.split(" ");
+
+      //crea los spans para las palabras y letras
+      for (let i = 0; i < palabrasSeparadas.length; i++) {
+        const palabraSpan = document.createElement("span");
+        parrafo.appendChild(palabraSpan);
+
+        // Divide cada palabra en letras
+        const letras = palabrasSeparadas[i].split("");
+        for (let j = 0; j < letras.length; j++) {
+          const letraSpan = document.createElement("span");
+          palabraSpan.appendChild(letraSpan);
         }
       }
 
@@ -122,8 +126,9 @@ fetch("diccionario.json")
     function analizarTeclaPresionada(event, palabra_elegida) {
       acerto = false;
       const spans_palabra = document.querySelectorAll(
-        "#palabra_a_adivinar span"
+        "#palabra_a_adivinar span span" // Cambiado el selector
       );
+
       const spans_errores = document.querySelectorAll("#errores span");
 
       //si la letra esta en la palabra
@@ -139,7 +144,7 @@ fetch("diccionario.json")
             (tecla == "u" && palabra_elegida[x].toLowerCase() == "ú")) &&
           letras_usadas.indexOf(tecla) == -1
         ) {
-          spans_palabra[x].innerHTML = palabra_elegida[x].toUpperCase();
+          spans_palabra[x].textContent = palabra_elegida[x].toUpperCase();
           aciertos_cont++;
 
           acerto = true;
@@ -148,19 +153,17 @@ fetch("diccionario.json")
 
       //si la letra no esta en la palabra
       if (
-        !acerto &&
         tecla.match(/^[a-z]$/) &&
         letras_usadas.indexOf(tecla) == -1
       ) {
-        spans_errores[errores_cont].innerHTML = tecla.toUpperCase();
-        errores_cont++;
-        atril.src = "assets/atril/img" + errores_cont + ".png";
+        if(!acerto){
+          spans_errores[errores_cont].innerHTML = tecla.toUpperCase();
+          errores_cont++;
+          atril.src = "assets/atril/img" + errores_cont + ".png";
+        }
+        //agrega la tecla a las teclas usadas
+        letras_usadas.push(tecla);
       }
-
-      //agrega la tecla a las teclas usadas
-      letras_usadas.push(tecla);
-
-      console.log(aciertos_cont, errores_cont);
 
       if (errores_cont == 7) {
         //muestra cual era la palabra
@@ -168,7 +171,7 @@ fetch("diccionario.json")
           spans_palabra[x].innerHTML = palabra_elegida[x].toUpperCase();
         }
         habilitarVolverJugar();
-      } else if (aciertos_cont >= largo) {
+      } else if (aciertos_cont >= palabra_elegida.length) {
         atril.src = "assets/atril/win.png";
         habilitarVolverJugar();
       }
