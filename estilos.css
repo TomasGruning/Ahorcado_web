@@ -1,3 +1,4 @@
+
 body {
   margin: auto;
   background: radial-gradient(#006d52, #033b2b);
@@ -8,7 +9,7 @@ body {
 
 main {
   height: auto;
-  padding-top: 21vh;
+  padding-top: 8em;
 
   display: flex;
   flex-direction: row;
@@ -17,10 +18,9 @@ main {
   gap: 2%;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 960px), (orientation: portrait) {
   main {
     height: 90vh;
-    padding-top: 2vh;
     flex-wrap: wrap;
   }
 }
