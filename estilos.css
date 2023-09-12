@@ -9,7 +9,7 @@ body {
 
 main {
   height: auto;
-  padding-top: 8em;
+  padding-top: 18vh;
 
   display: flex;
   flex-direction: row;
@@ -18,10 +18,16 @@ main {
   gap: 2%;
 }
 
-@media (max-width: 960px), (orientation: portrait) {
+@media (orientation: portrait) {
   main {
-    height: 90vh;
+    height: max-content;
+    padding-top: 3.2vh;
     flex-wrap: wrap;
+    gap: 10%;
+  }
+
+  #imagen {
+    padding-bottom: 4vh;
   }
 }
 
