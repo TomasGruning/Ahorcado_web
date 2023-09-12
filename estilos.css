@@ -43,7 +43,7 @@ main div {
 
 #errores {
   height: 6vh;
-  width: 60vh;
+  width: 50vh;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 2.7vh;
   display: flex;
@@ -62,11 +62,10 @@ main div {
 }
 
 #texto {
-  padding-left: 1vh;
   padding-top: 17vh;
   display: inline-flex;
   align-items: baseline;
-  gap: 2vh;
+  gap: 3.5vh;
 }
 
 #palabra_a_adivinar span {
@@ -90,15 +89,14 @@ main div {
   border-bottom: 0.6vh solid black;
   vertical-align: bottom;
   text-align: center;
-  margin-right: 1.2vh;
+  margin-left: 1.2vh;
   display: inline-block;
 }
 
 #jugar {
   background: rgba(255, 255, 255, 0.1);
   display: inline-block;
-  width: 9.2em;
-  padding: 0 1.5vh;
+  padding: 0 2vh;
   margin-right: 4vh;
   border: 0.4vh solid rgba(25, 25, 25, 0.1);
   border-radius: 40vh;
